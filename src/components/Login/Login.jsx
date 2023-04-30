@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { authContext } from '../providers/AuthProvider';
 
 const Login = () => {
+    const [show, setShow] =useState(false);
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const {signInUser} = useContext(authContext);
@@ -46,7 +47,8 @@ const Login = () => {
                 </div>
                 <div className="form-control">
                     <label htmlFor="password">Password</label>
-                    <input type="password" name="password" id="password" placeholder='Enter Password' required />
+                    <input type={show ? 'text' : 'password'} name="password" id="password" placeholder='Enter Password' required />
+                    <p className='btn-show-hide' onClick={() => setShow(!show)}><button>{show ? 'Hide Password' : 'Show Password'}</button></p>
                 </div>
                 <input className='btn-submit' type="submit" value="Login" />
             </form>
